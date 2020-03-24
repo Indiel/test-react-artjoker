@@ -1,0 +1,21 @@
+.user-nav {
+  box-sizing: border-box;
+  margin-left: auto;
+  height: 100%;
+}
+
+.user-nav__list {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  list-style-type: none;
+}
+
+.user-nav__btn {
+  margin-left: 10px;
+}

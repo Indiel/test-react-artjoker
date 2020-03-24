@@ -1,0 +1,18 @@
+.news-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-details__img {
+  width: 70%;
+  max-width: 400px;
+  align-self: center;
+}
+
+.news-details__title {
+  margin: 20px 0 5px;
+}
+
+.news-details__text {
+  margin: 30px 0 0;
+}

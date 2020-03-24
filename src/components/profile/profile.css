@@ -1,0 +1,42 @@
+.profile {
+  display: flex;
+}
+
+.profile__info {
+  width: 40%;
+}
+
+.profile__date span {
+  font-weight: 700;
+}
+
+.profile__show-form-btn {
+  margin-bottom: 20px;
+}
+
+.profile__rewrite {
+  width: 60%;
+}
+
+.profile__gender {
+  margin: 0;
+}
+
+.profile__gender-label {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 550px) {
+  .profile {
+    display: block;
+  }
+
+  .profile__info {
+    width: 100%;
+  }
+
+  .profile__rewrite {
+    width: 100%;
+  }
+}

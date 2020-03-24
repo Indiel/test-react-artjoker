@@ -1,0 +1,16 @@
+.main-nav {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.main-nav__list {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  list-style-type: none;
+}

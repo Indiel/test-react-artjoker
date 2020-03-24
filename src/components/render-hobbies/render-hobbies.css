@@ -1,0 +1,22 @@
+.profile__hobbies-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.profile__hobbies-item {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+}
+
+.profile__hobbies-add {
+  margin-bottom: 20px;
+}
+
+.profile__hobbies-del {
+  margin-left: 20px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
