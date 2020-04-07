@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/test-react-artjoker/static/css/main.beb781c7.chunk.css",
-    "main.js": "/test-react-artjoker/static/js/main.cea19f1d.chunk.js",
-    "main.js.map": "/test-react-artjoker/static/js/main.cea19f1d.chunk.js.map",
+    "main.js": "/test-react-artjoker/static/js/main.3dbaf4ca.chunk.js",
+    "main.js.map": "/test-react-artjoker/static/js/main.3dbaf4ca.chunk.js.map",
     "runtime-main.js": "/test-react-artjoker/static/js/runtime-main.b6323f0a.js",
     "runtime-main.js.map": "/test-react-artjoker/static/js/runtime-main.b6323f0a.js.map",
     "static/js/2.0062302e.chunk.js": "/test-react-artjoker/static/js/2.0062302e.chunk.js",
     "static/js/2.0062302e.chunk.js.map": "/test-react-artjoker/static/js/2.0062302e.chunk.js.map",
     "index.html": "/test-react-artjoker/index.html",
-    "precache-manifest.1c6150d7a2152bd60158577bf3cde6aa.js": "/test-react-artjoker/precache-manifest.1c6150d7a2152bd60158577bf3cde6aa.js",
+    "precache-manifest.6baa3e8a85ce398cdec182fd97413db9.js": "/test-react-artjoker/precache-manifest.6baa3e8a85ce398cdec182fd97413db9.js",
     "service-worker.js": "/test-react-artjoker/service-worker.js",
     "static/css/main.beb781c7.chunk.css.map": "/test-react-artjoker/static/css/main.beb781c7.chunk.css.map",
     "static/js/2.0062302e.chunk.js.LICENSE.txt": "/test-react-artjoker/static/js/2.0062302e.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b6323f0a.js",
     "static/js/2.0062302e.chunk.js",
     "static/css/main.beb781c7.chunk.css",
-    "static/js/main.cea19f1d.chunk.js"
+    "static/js/main.3dbaf4ca.chunk.js"
   ]
 }
