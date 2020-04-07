@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import usersService from './services/users-service';
 import { fetchUsers } from './actions/actions';
@@ -25,7 +25,7 @@ class App extends React.Component {
     const { isSingIn } = this.props;
     return (
       <div className="App">
-        <BrowserRouter>
+        <HashRouter>
           <Header />
 
           <main className="main">
@@ -48,7 +48,7 @@ class App extends React.Component {
           </main>
 
           <Footer />
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
   }
