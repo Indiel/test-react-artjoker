@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e90b9c59aa2f796de2efcf5a27ce27f8",
+    "revision": "218cf95d802350e02bb77b1acc3ed607",
     "url": "/test-react-artjoker/index.html"
   },
   {
-    "revision": "2f0052f23907c5e078d2",
+    "revision": "e6e8873745b6cfea019b",
     "url": "/test-react-artjoker/static/css/main.beb781c7.chunk.css"
   },
   {
-    "revision": "918f516e441c9d50961b",
-    "url": "/test-react-artjoker/static/js/2.a44dc808.chunk.js"
+    "revision": "ec5117e7e6122175f5a5",
+    "url": "/test-react-artjoker/static/js/2.0062302e.chunk.js"
   },
   {
     "revision": "f231859d6585c4cd5f80c344783ed269",
-    "url": "/test-react-artjoker/static/js/2.a44dc808.chunk.js.LICENSE.txt"
+    "url": "/test-react-artjoker/static/js/2.0062302e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2f0052f23907c5e078d2",
-    "url": "/test-react-artjoker/static/js/main.93a41cdd.chunk.js"
+    "revision": "e6e8873745b6cfea019b",
+    "url": "/test-react-artjoker/static/js/main.b3041326.chunk.js"
   },
   {
     "revision": "30abaf03451bf2acdf0f",
