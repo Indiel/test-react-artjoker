@@ -6,7 +6,7 @@ const NewsListItem = ({ id, title, date, text }) => {
   return (
     <li className="news__list-item">
       <img
-        src={`../../img/news-${id}.jpg`}
+        src={`./img/news-${id}.jpg`}
         alt="Img"
         className="news__img"
       />

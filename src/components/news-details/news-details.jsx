@@ -12,7 +12,7 @@ const NewsDetails = ({ itemId }) => {
   return (
     <div className="news-details">
       <img
-        src={`../../img/news-${id}.jpg`}
+        src={`./img/news-${id}.jpg`}
         alt="Img"
         className="news-details__img"
       />
