@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './render-field.css';
 
-// eslint-disable-next-line react/prop-types
 const renderField = ({ input, label, id, type, placeholder, meta, errorMassage }) => {
   return (
     <div>
@@ -15,7 +14,6 @@ const renderField = ({ input, label, id, type, placeholder, meta, errorMassage }
           && ((meta.error && <span className="input__error">{meta.error}</span>)
           || ((meta.warning && <span className="input__error">{meta.warning}</span>))
           || (errorMassage ? <span className="input__error">{errorMassage}</span> : null))}
-        {/* {errorMassage ? <span className="input__error">{errorMassage}</span> : null} */}
       </div>
     </div>
   );

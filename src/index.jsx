@@ -7,12 +7,14 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
 import loginReducer from './reducers/loginReducer';
+import newsReducer from './reducers/newsReducer';
 
 import './index.css';
 import App from './App';
 
 const reducers = {
   login: loginReducer,
+  news: newsReducer,
   form: formReducer,
 };
 const reducer = combineReducers(reducers);

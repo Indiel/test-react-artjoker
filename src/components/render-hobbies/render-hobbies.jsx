@@ -13,9 +13,10 @@ const renderHobbies = ({ fields, meta: { error } }) => {
         </button>
       </li>
       {fields.map((hobby, index) => {
+        const key = index + 1;
+
         return (
-          // eslint-disable-next-line react/no-array-index-key
-          <li className="profile__hobbies-item" key={index}>
+          <li className="profile__hobbies-item" key={key}>
             <Field
               name={hobby}
               type="text"

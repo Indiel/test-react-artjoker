@@ -5,7 +5,6 @@ import { registration } from '../../actions/actions';
 import './authorization.css';
 
 import renderField from '../render-field/render-field';
-// import validate from '../../helpers/validate';
 import { validate } from '../../helpers/validate';
 
 const Authorization = ({ handleSubmit, isRegistration, onRegistration }) => {

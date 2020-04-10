@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { singOut } from '../../actions/actions';
 import './user-nav.css';
 
-const UserNav = ({ isSingIn, handlerSingOut }) => {
+const UserNav = ({ isSignIn, handlerSingOut }) => {
   return (
     <nav className="user-nav">
       <ul className="user-nav__list">
-        {isSingIn ? <li><NavLink to="/profile" activeClassName="active" className="nav-link">Profile</NavLink></li> : undefined}
+        {isSignIn ? <li><NavLink to="/profile" activeClassName="active" className="nav-link">Profile</NavLink></li> : undefined}
 
-        {isSingIn
+        {isSignIn
           ? <li><button type="button" className="btn user-nav__btn" onClick={handlerSingOut}>Выход</button></li>
           : <li><Link to="/authorization" className="btn  user-nav__btn">Вход/Регистрация</Link></li>}
       </ul>
@@ -19,7 +19,7 @@ const UserNav = ({ isSingIn, handlerSingOut }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { isSingIn: Boolean(state.login.isSingIn) };
+  return { isSignIn: Boolean(state.login.isSignIn) };
 };
 
 const mapDispatchToProps = (dispatch) => {

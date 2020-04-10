@@ -49,5 +49,5 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "gh-pages": "^2.2.0"
   },
-  "homepage": "https://indiel.github.io/test-react-artjoker"
+  "homepage": "."
 }

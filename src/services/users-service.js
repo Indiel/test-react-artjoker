@@ -1,63 +1,60 @@
-const usersService = {
-  users: [
-    {
-      email: 'harry@mail.com',
-      password: '111111',
-      name: 'Harry',
-      lastName: 'Potter',
-      phone: '111-111',
-      age: '13',
-      gender: 'm',
-      hobbies: ['Quidditch', 'Adventures'],
-    },
-    {
-      email: 'ron@mail.com',
-      password: '222222',
-      name: 'Ron',
-      lastName: 'Weasley',
-      phone: '222-222',
-      age: '13',
-      gender: 'm',
-      hobbies: ['Eating', 'Walks'],
-    },
-    {
-      email: 'hermione@mail.com',
-      password: '333333',
-      name: 'Hermione',
-      lastName: 'Granger',
-      phone: '333-333',
-      age: '13',
-      gender: 'w',
-      hobbies: ['Learning', 'Reading'],
-    },
-  ],
+const urlApi = 'https://jsonplaceholder.typicode.com/users';
+const newUsers = [];
 
-  getUsers() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (Math.random() < 0) {
-          reject(new Error('Нет связи с сервером. Попробуйте перезагрузить страницу.'));
-        } else {
-          resolve(this.users);
-        }
-      }, 700);
+async function getUsers() {
+  const response = await fetch(urlApi);
+
+  if (!response.ok) {
+    throw new Error(`Что-то пошло не так:( Ошибка ${response.status}`);
+  }
+
+  const result = response.json();
+  return result;
+}
+
+export function addUser(values) {
+  newUsers.push({ ...values });
+}
+
+export async function searchUser(email, password, action) {
+  const response = await getUsers();
+  let result;
+  let index;
+
+  if (newUsers.length) {
+    result = newUsers.find((user, i) => {
+      index = i;
+      if (action === 'addNewUser') {
+        return (email === user.email);
+      }
+      return (email === user.email && password === user.password);
     });
-  },
-
-  searchUser: (object) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (Math.random() > 0.75) {
-          reject(new Error('Нет связи с сервером. Попробуйте еще раз.'));
-        } else {
-          const result = this.users.filter((user) => {
-            return (object.email === user.email && object.password === user.password) ? user : null;
-          });
-          resolve(result);
-        }
-      }, 700);
+  }
+  if (!result) {
+    result = response.find((user) => {
+      if (email === user.email) {
+        addUser({ ...user, password });
+      }
+      return (email === user.email);
     });
-  },
-};
+  }
 
-export default usersService;
+  return { index, user: result };
+}
+
+export async function changeUser(values) {
+  const response = await searchUser(values.oldEmail, values.oldPassword);
+
+  const result = {
+    ...response.user,
+    ...values.newData,
+  };
+
+  if (response.index === undefined) {
+    newUsers.push(result);
+  } else {
+    newUsers[response.index] = result;
+  }
+
+  return result;
+}

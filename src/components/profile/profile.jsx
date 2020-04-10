@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
@@ -18,51 +17,62 @@ const Profile = ({ handleSubmit, enteredUser, isShowChangeForm, handlerShowChang
         {enteredUser.name ? (
           <p className="profile__date">
             Имя:
-            <span> {enteredUser.name}</span>
+            <span>
+              {' '}
+              {enteredUser.name}
+            </span>
           </p>
         ) : undefined}
 
-        {enteredUser.lastName ? (
-          <p className="profile__date">
-            Фамилия:
-            <span> {enteredUser.lastName}</span>
-          </p>
-        ) : undefined}
-
-        {enteredUser.email ? (
+        {enteredUser.email && (
           <p className="profile__date">
             Email:
-            <span> {enteredUser.email}</span>
+            <span>
+              {' '}
+              {enteredUser.email}
+            </span>
           </p>
-        ) : undefined}
+        )}
 
-        {enteredUser.phone ? (
+        {enteredUser.phone && (
           <p className="profile__date">
             Телефон:
-            <span> {enteredUser.phone}</span>
+            <span>
+              {' '}
+              {enteredUser.phone}
+            </span>
           </p>
-        ) : undefined}
+        )}
 
-        {enteredUser.gender ? (
+        {enteredUser.gender && (
           <p className="profile__date">
             Пол:
-            <span> {enteredUser.gender}</span>
+            <span>
+              {' '}
+              {enteredUser.gender}
+            </span>
           </p>
-        ) : undefined}
+        )}
 
-        {enteredUser.age ? (
+        {enteredUser.age && (
           <p className="profile__date">
             Возраст:
-            <span> {enteredUser.age}</span>
+            <span>
+              {' '}
+              {enteredUser.age}
+            </span>
           </p>
-        ) : undefined}
+        )}
 
-        {enteredUser.hobbies ? (
+        {enteredUser.hobbies && (
           <p className="profile__date">
             Хобби:
-            <span> {enteredUser.hobbies.join(', ')}</span>
+            <span>
+              {' '}
+              {enteredUser.hobbies.join(', ')}
+            </span>
           </p>
-        ) : undefined}
+        )}
 
         <button type="button" className="btn profile__show-form-btn" onClick={handlerShowChangeForm}>Анкета</button>
       </section>
@@ -75,17 +85,8 @@ const Profile = ({ handleSubmit, enteredUser, isShowChangeForm, handlerShowChang
               name="name"
               type="text"
               id="profile-name"
-              label="Имя:"
-              placeholder="Введите имя"
-            />
-
-            <Field
-              component={renderField}
-              name="lastName"
-              type="text"
-              id="profile-lastName"
-              label="Фамилия:"
-              placeholder="Введите фамилию"
+              label="Имя и фамилия:"
+              placeholder="Введите имя и фамилию"
             />
 
             <Field

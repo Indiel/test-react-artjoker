@@ -1,101 +1,67 @@
 const initialState = {
-  isSingIn: false,
+  isSignIn: false,
   isRegistration: true,
-  users: null,
+  isLoading: false,
   enteredUser: [],
   errorMassage: '',
   isShowChangeForm: false,
+  isError: false,
 };
 
 const loginReducer = (state = initialState, action) => {
-  if (action.type === 'SIGN_IN') {
-    const verifyUser = state.users.filter((user) => {
-      return action.payload.email === user.email && action.payload.password === user.password;
-    });
-    if (verifyUser.length !== 0) {
-      return {
-        ...state,
-        isSingIn: true,
-        enteredUser: verifyUser[0],
-        errorMassage: '',
-      };
-    }
-    return {
-      ...state,
-      isSingIn: false,
-      errorMassage: 'Неправильный email или пароль.',
-    };
-  }
-
-  if (action.type === 'ADD_NEW_USER') {
-    const existingUser = state.users.filter((user) => {
-      return action.payload.email === user.email;
-    });
-    if (existingUser.length !== 0) {
-      return {
-        ...state,
-        isSingIn: false,
-        errorMassage: 'Такой пользователь уже зарегистрирован.',
-      };
-    }
-    return {
-      ...state,
-      isSingIn: true,
-      enteredUser: action.payload,
-      users: [...state.users, action.payload],
-      errorMassage: '',
-    };
-  }
-
-  if (action.type === 'CHANGE_PROFILE') {
-    let changeUserIndex;
-    const changeUser = state.users.filter((user, index) => {
-      changeUserIndex = index;
-      return action.payload.oldEmail === user.email;
-    });
-
-    if (action.payload.newData.email) {
-      changeUser[0].email = action.payload.newData.email;
-    }
-    if (action.payload.newData.password) {
-      changeUser[0].password = action.payload.newData.password;
-    }
-    if (action.payload.newData.name) {
-      changeUser[0].name = action.payload.newData.name;
-    }
-    if (action.payload.newData.lastName) {
-      changeUser[0].lastName = action.payload.newData.lastName;
-    }
-    if (action.payload.newData.phone) {
-      changeUser[0].phone = action.payload.newData.phone;
-    }
-    if (action.payload.newData.age) {
-      changeUser[0].age = action.payload.newData.age;
-    }
-    if (action.payload.newData.gender) {
-      changeUser[0].gender = action.payload.newData.gender;
-    }
-    if (action.payload.newData.hobbies) {
-      changeUser[0].hobbies = action.payload.newData.hobbies;
-    }
-
-    return {
-      ...state,
-      enteredUser: changeUser[0],
-      users: [
-        ...state.users.slice(0, changeUserIndex),
-        changeUser[0],
-        ...state.users.slice(changeUserIndex + 1),
-      ],
-      isShowChangeForm: false,
-    };
-  }
-
   switch (action.type) {
-    case 'FETCH_USERS_SUCCESS':
+    case 'FETCH_USERS_ERROR':
       return {
         ...state,
-        users: action.payload,
+        isError: action.payload,
+      };
+
+    case 'IS_LOADING':
+      return {
+        ...state,
+        isLoading: action.payload,
+        isError: false,
+      };
+
+    case 'SIGN_IN':
+      if (action.payload) {
+        return {
+          ...state,
+          isSignIn: true,
+          enteredUser: action.payload,
+          errorMassage: '',
+          isError: false,
+        };
+      }
+      return {
+        ...state,
+        isSignIn: false,
+        errorMassage: 'Неправильный email или пароль.',
+        isError: false,
+      };
+
+    case 'ADD_NEW_USER':
+      if (action.payload.userExists) {
+        return {
+          ...state,
+          isSignIn: false,
+          errorMassage: 'Такой пользователь уже зарегистрирован.',
+          isError: false,
+        };
+      }
+      return {
+        ...state,
+        isSignIn: true,
+        enteredUser: action.payload.newUser,
+        errorMassage: '',
+        isError: false,
+      };
+
+    case 'CHANGE_PROFILE':
+      return {
+        ...state,
+        enteredUser: action.payload,
+        isShowChangeForm: false,
       };
 
     case 'REGISTRATION':
@@ -107,7 +73,7 @@ const loginReducer = (state = initialState, action) => {
     case 'SIGN_OUT':
       return {
         ...state,
-        isSingIn: false,
+        isSignIn: false,
         enteredUser: [],
       };
 
