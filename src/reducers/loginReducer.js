@@ -1,7 +1,7 @@
 const initialState = {
   isSignIn: false,
   isRegistration: true,
-  isLoading: false,
+  isUsersLoading: false,
   enteredUser: [],
   errorMassage: '',
   isShowChangeForm: false,
@@ -16,10 +16,10 @@ const loginReducer = (state = initialState, action) => {
         isError: action.payload,
       };
 
-    case 'IS_LOADING':
+    case 'IS_USERS_LOADING':
       return {
         ...state,
-        isLoading: action.payload,
+        isUsersLoading: action.payload,
         isError: false,
       };
 

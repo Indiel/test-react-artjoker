@@ -1,5 +1,6 @@
 const initialState = {
-  isLoading: false,
+  isNewsLoading: false,
+  isOneNewsLoading: false,
   news: [],
   oneNews: false,
   isError: false,
@@ -7,32 +8,46 @@ const initialState = {
 
 const newsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'IS_LOADING':
+    case 'IS_NEWS_LOADING':
+      if (action.payload) {
+        return {
+          ...state,
+          isNewsLoading: action.payload,
+          isError: false,
+        };
+      }
+      return {
+        ...state,
+        isNewsLoading: action.payload,
+        isError: false,
+      };
+
+    case 'IS_ONE_NEWS_LOADING':
       if (action.payload) {
         return {
           ...state,
           oneNews: false,
-          isLoading: action.payload,
+          isOneNewsLoading: action.payload,
           isError: false,
         };
       }
       return {
         ...state,
-        isLoading: action.payload,
+        isOneNewsLoading: action.payload,
         isError: false,
       };
 
     case 'FETCH_NEWS_SUCCESS':
-      if (action.payload.list) {
-        return {
-          ...state,
-          news: action.payload.list,
-          isError: false,
-        };
-      }
       return {
         ...state,
-        oneNews: action.payload.news,
+        news: action.payload,
+        isError: false,
+      };
+
+    case 'FETCH_ONE_NEWS_SUCCESS':
+      return {
+        ...state,
+        oneNews: action.payload,
         isError: false,
       };
 

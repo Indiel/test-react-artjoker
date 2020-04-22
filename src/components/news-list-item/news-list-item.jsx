@@ -11,7 +11,18 @@ const NewsListItem = ({ id, title, date, text }) => {
         className="news__img"
       /> */}
       <div className="news__info">
-        <h2 className="news__title"><Link to={`/news/${id}`} className="news__link">{title}</Link></h2>
+        <h2 className="news__title">
+          <Link
+            object={title}
+            className="news__link"
+            to={{
+              pathname: `/news/${id}`,
+              state: { modal: true },
+            }}
+          >
+            {title}
+          </Link>
+        </h2>
         <time className="news__date">{date}</time>
         <p className="news__text">{text}</p>
       </div>

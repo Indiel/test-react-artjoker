@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchNews } from '../../actions/actions';
 import './news-list.css';
@@ -10,26 +11,25 @@ import Error from '../error/error';
 class NewsList extends React.Component {
   componentDidMount() {
     const { getFetchNews } = this.props;
-    getFetchNews('http://testtask.sebbia.com/v1/news/categories/0/news');
+    getFetchNews();
   }
 
   render() {
-    const { isLoading, news, isError } = this.props;
+    const { isNewsLoading, news, isError } = this.props;
 
-    const loading = isLoading && !isError ? <Preloader /> : undefined;
+    const loading = isNewsLoading && !isError ? <Preloader /> : undefined;
     const error = isError ? <Error error={String(isError)} /> : undefined;
 
     const elements = news.length > 0
       ? (news.map((item) => {
-        const { id, title, date, shortDescription } = item;
-
+        const { url, title, publishedAt, description } = item;
         return (
           <NewsListItem
-            key={id}
-            id={id}
+            key={url}
+            id={publishedAt}
             title={title}
-            date={(new Date(date)).toLocaleString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
-            text={shortDescription}
+            date={(new Date(publishedAt)).toLocaleString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
+            text={description}
           />
         );
       }))
@@ -37,9 +37,7 @@ class NewsList extends React.Component {
 
     return (
       <ul className="news__list">
-        { elements }
-        { loading }
-        { error }
+        { loading || error || elements }
       </ul>
     );
   }
@@ -47,7 +45,7 @@ class NewsList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.news.isLoading,
+    isNewsLoading: state.news.isNewsLoading,
     isError: state.news.isError,
     news: state.news.news,
   };
@@ -57,4 +55,4 @@ const mapDispatchToProps = (dispatch) => {
   return { getFetchNews: (url) => { dispatch(fetchNews(url)); } };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewsList));

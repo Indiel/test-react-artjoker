@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
   return {
     isSignIn: state.login.isSignIn,
     isRegistration: state.login.isRegistration,
-    isError: state.news.isError,
+    isError: state.login.isError,
   };
 };
 

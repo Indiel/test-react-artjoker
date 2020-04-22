@@ -1,0 +1,45 @@
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.modal {
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  min-width: 300px;
+  max-width: 600px;
+  min-height: 180px;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  position: absolute;
+  background: #512f55;
+  padding: 15;
+  border-radius: 30px;
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 40px;
+  color: #ffffff;
+  font-size: 26px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__close-btn:hover,
+.modal__close-btn:focus {
+  background: linear-gradient(30deg, rgb(85, 10, 110) 0%, rgb(170, 20, 200) 50%, rgba(140, 0, 55, 1) 100%);
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

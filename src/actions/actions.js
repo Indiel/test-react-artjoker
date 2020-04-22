@@ -1,5 +1,7 @@
 import { searchUser, addUser, changeUser } from '../services/users-service';
+import { getNewsList, getOneNews } from '../services/news-service';
 
+// export const singOut = () => ({ type: 'SIGN_OUT' });
 export const singOut = () => { return { type: 'SIGN_OUT' }; };
 export const registration = () => { return { type: 'REGISTRATION' }; };
 export const showChangeForm = () => { return { type: 'SHOW_CHANGE_FORM' }; };
@@ -7,9 +9,12 @@ export const showChangeForm = () => { return { type: 'SHOW_CHANGE_FORM' }; };
 export const fetchUsersSuccess = (result) => { return { type: 'FETCH_USERS_SUCCESS', payload: result }; };
 export const fetchUsersError = (err) => { return { type: 'FETCH_USERS_ERROR', payload: err }; };
 
-export const isLoading = (bool) => { return { type: 'IS_LOADING', payload: bool }; };
+export const isNewsLoading = (bool) => { return { type: 'IS_NEWS_LOADING', payload: bool }; };
+export const isOneNewsLoading = (bool) => { return { type: 'IS_ONE_NEWS_LOADING', payload: bool }; };
+export const isUsersLoading = (bool) => { return { type: 'IS_USERS_LOADING', payload: bool }; };
 
 export const fetchNewsSuccess = (result) => { return { type: 'FETCH_NEWS_SUCCESS', payload: result }; };
+export const fetchOneNewsSuccess = (result) => { return { type: 'FETCH_ONE_NEWS_SUCCESS', payload: result }; };
 export const fetchNewsError = (err) => { return { type: 'FETCH_NEWS_ERROR', payload: err }; };
 
 export const signIn = (values) => {
@@ -44,22 +49,28 @@ export const changeProfile = (values) => {
   };
 };
 
-export const fetchNews = (urlApi) => {
+export const fetchNews = () => {
   return (dispatch) => {
-    dispatch(isLoading(true));
+    dispatch(isNewsLoading(true));
 
-    fetch(urlApi)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Что-то пошло не так:( Ошибка ${response.status}`);
-        }
-
-        dispatch(isLoading(false));
-
-        const result = response.json();
-        return result;
+    getNewsList()
+      .then((result) => {
+        dispatch(isNewsLoading(false));
+        return dispatch(fetchNewsSuccess(result));
       })
-      .then((result) => { return dispatch(fetchNewsSuccess(result)); })
+      .catch((err) => { return dispatch(fetchNewsError(err)); });
+  };
+};
+
+export const searchOneNews = (date) => {
+  return (dispatch) => {
+    dispatch(isOneNewsLoading(true));
+
+    getOneNews(date)
+      .then((result) => {
+        dispatch(isOneNewsLoading(false));
+        return dispatch(fetchOneNewsSuccess(result));
+      })
       .catch((err) => { return dispatch(fetchNewsError(err)); });
   };
 };

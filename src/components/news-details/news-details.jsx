@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchNews } from '../../actions/actions';
+import { searchOneNews } from '../../actions/actions';
 import './news-details.css';
 
 import Preloader from '../preloader/preloader';
@@ -8,17 +8,17 @@ import Error from '../error/error';
 
 class NewsDetails extends React.Component {
   componentDidMount() {
-    const { itemId, getFetchNews } = this.props;
-    getFetchNews(`http://testtask.sebbia.com/v1/news/details?id=${itemId}`);
+    const { itemId, getOneNews } = this.props;
+    getOneNews(itemId);
   }
 
   render() {
-    const { isLoading, isError, oneNews } = this.props;
+    const { isOneNewsLoading, isError, oneNews } = this.props;
 
     const error = isError ? <Error error={String(isError)} /> : undefined;
-    const loading = isLoading && !isError ? <Preloader /> : undefined;
+    const loading = isOneNewsLoading && !isError ? <Preloader /> : undefined;
 
-    const { title, date, shortDescription, fullDescription } = oneNews;
+    const { title, publishedAt, content } = oneNews;
 
     const element = (
       <>
@@ -28,17 +28,14 @@ class NewsDetails extends React.Component {
           className="news-details__img"
         /> */}
         <h2 className="news-details__title">{title}</h2>
-        <time className="news-details__date">{date}</time>
-        <p className="news-details__text">{shortDescription}</p>
-        <p className="news-details__full" dangerouslySetInnerHTML={{ __html: fullDescription }} />
+        <time className="news-details__date">{(new Date(publishedAt)).toLocaleString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        <p className="news-details__text">{content}</p>
       </>
     );
 
     return (
       <div className="news-details">
-        { element }
-        { loading }
-        { error }
+        { loading || error || element }
       </div>
     );
   }
@@ -46,14 +43,14 @@ class NewsDetails extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.news.isLoading,
+    isOneNewsLoading: state.news.isOneNewsLoading,
     isError: state.news.isError,
     oneNews: state.news.oneNews,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { getFetchNews: (url) => { dispatch(fetchNews(url)); } };
+  return { getOneNews: (date) => { dispatch(searchOneNews(date)); } };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsDetails);
