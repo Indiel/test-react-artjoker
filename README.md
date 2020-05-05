@@ -1,68 +1,76 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# React JS Test Task
 
-In the project directory, you can run:
+Тестовое задание в компанию.
 
+Стек технологий:
+  1. React JS
+  2. Redux
+  3. React Router
+  4. Redux Thunk
+  5. Redux Form
+  6. ESLint
+
+## Запуск проекта
+
+### `npm install`
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### [Deploy](https://indiel.github.io/test-react-artjoker/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Особенности
 
-### `npm test`
+Для проверки зарегестрированных пользователей используются тестовые данные [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users). При первом входе вводится любой пароль, после пароль проверяется. Работает регистрация.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Задание
 
-### `npm run build`
+Создать SPA
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Phase 1. Base app
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Pages:**
+  - Home page (use your imagination)
+  - Login/Registration
+  - News list (only title and small description)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Header (or Side bar) and Footer should have links to all pages and should be presented always.
+If user are logged in, logout button should be presented instead link to Login/Registration.
+Unregistered/Unlogged users are allowed to view all pages.
+After successful Login/Registration user should be redirected to Home page.
 
-### `npm run eject`
+**Login form:**
+  - email (validation by email regexp)
+  - password (> 6 chars)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Registration form:**
+  - Same fields as in Login form
+  - checkbox “I’m agree with terms and conditions” (required)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Phase 2. Profile page, Detailed view for the news
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Task 1:**
+Add link to Profile page. This route is protected. If user are not logged in and goes to Profile page, he should be redirected to Login/Registration page.
+There is a form in Profile page, where user can add or edit personal info.
+After successful Login/Registration user should be redirected to Profile page.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Profile form:**
+  - First name
+  - Last name
+  - Phone number (allows only 12 digits and ‘+’)
+  - Gender radio buttons (male/female)
+  - Age (only digits from 10 to 99)
+  - Hobbies (It should be Field Array and buttons ‘Add one more’ and ‘Remove’)
 
-## Learn More
+User should be informed about status of submitting of the form by pop up (success or with error messages).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Task 2:**
+Add detailed view to News.
+If user clicks to one of the news in list, detailed view should be presented in modal window.
+If user clicks to one of the news in list with ‘ctrl’ button being pressed, detailed view should be opened in new tab as a page (not modal).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**Detailed view should have:**
+  - Title
+  - Photo
+  - Full description
+  - Formatted Date
